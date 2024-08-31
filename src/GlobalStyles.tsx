@@ -9,3 +9,5 @@ export const globalStyles = StyleSheet.create({
         alignItems: 'center',
     },
 })
+
+export const bgGradientColors = ['#08144b', '#6826a6']

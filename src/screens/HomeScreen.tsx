@@ -1,42 +1,44 @@
 import React from "react";
-import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {globalStyles} from "../GlobalStyles.tsx";
+import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {bgGradientColors, globalStyles} from "../GlobalStyles.tsx";
 
 import logo from '../../assets/app-logo.png';
 import LinearGradient from "react-native-linear-gradient";
+import {LOGIN_SCREEN_NAV, REGISTER_SCREEN_NAV} from "../../App.tsx";
 
-function HomeScreen(): React.JSX.Element {
+function HomeScreen({navigation}: any): React.JSX.Element {
 
+    //TODO lock orientation
 
     const handleLogin = () => {
-        console.log('Login clicked');
+        navigation.navigate(LOGIN_SCREEN_NAV)
     };
 
     const handleRegister = () => {
-        console.log('Register clicked');
+        navigation.navigate(REGISTER_SCREEN_NAV)
     };
 
 
     return (
-        <LinearGradient
-            colors={['#08144b', '#7622c4']}
-            style={globalStyles.container}>
-            <View style={styles.textContainer}>
-                <Text style={styles.appName}>Fish Tracker</Text>
-            </View>
-            <View style={styles.logoContainer}>
-                <Image source={logo} style={styles.logo} resizeMode="contain"/>
-            </View>
+        <SafeAreaView style={globalStyles.container}>
+            <LinearGradient colors={bgGradientColors} style={globalStyles.container}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.appName}>Fish Tracker</Text>
+                </View>
+                <View style={styles.logoContainer}>
+                    <Image source={logo} style={styles.logo} resizeMode="contain"/>
+                </View>
 
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                    <Text style={styles.buttonText}>Register</Text>
-                </TouchableOpacity>
-            </View>
-        </LinearGradient>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                        <Text style={styles.buttonText}>Login</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={handleRegister}>
+                        <Text style={styles.buttonText}>Register</Text>
+                    </TouchableOpacity>
+                </View>
+            </LinearGradient>
+        </SafeAreaView>
     )
 }
 
