@@ -1,0 +1,10 @@
+{
+  "home-screen": {
+    "login": "Sign in",
+    "register": "Sign up"
+  },
+  "language-menu": {
+    "english": "English",
+    "polish": "Polish"
+  }
+}

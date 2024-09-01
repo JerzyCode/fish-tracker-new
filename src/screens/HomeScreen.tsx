@@ -5,9 +5,12 @@ import {bgGradientColors, globalStyles} from "../GlobalStyles.tsx";
 import logo from '../../assets/app-logo.png';
 import LinearGradient from "react-native-linear-gradient";
 import {LOGIN_SCREEN_NAV, REGISTER_SCREEN_NAV} from "../../App.tsx";
+import {useTranslation} from "react-i18next";
+import LanguageMenu from "../components/LanguageMenu.tsx";
+import {MenuProvider} from "react-native-popup-menu";
 
 function HomeScreen({navigation}: any): React.JSX.Element {
-
+    const {t} = useTranslation()
     //TODO lock orientation
 
     const handleLogin = () => {
@@ -20,25 +23,29 @@ function HomeScreen({navigation}: any): React.JSX.Element {
 
 
     return (
-        <SafeAreaView style={globalStyles.container}>
-            <LinearGradient colors={bgGradientColors} style={globalStyles.container}>
-                <View style={styles.textContainer}>
-                    <Text style={styles.appName}>Fish Tracker</Text>
-                </View>
-                <View style={styles.logoContainer}>
-                    <Image source={logo} style={styles.logo} resizeMode="contain"/>
-                </View>
+        <MenuProvider>
+            <LanguageMenu/>
 
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                        <Text style={styles.buttonText}>Register</Text>
-                    </TouchableOpacity>
-                </View>
-            </LinearGradient>
-        </SafeAreaView>
+            <SafeAreaView style={globalStyles.container}>
+                <LinearGradient colors={bgGradientColors} style={globalStyles.container}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.appName}>Fish Tracker</Text>
+                    </View>
+                    <View style={styles.logoContainer}>
+                        <Image source={logo} style={styles.logo} resizeMode="contain"/>
+                    </View>
+
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                            <Text style={styles.buttonText}>{t('home-screen.login')}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={handleRegister}>
+                            <Text style={styles.buttonText}>{t('home-screen.register')}</Text>
+                        </TouchableOpacity>
+                    </View>
+                </LinearGradient>
+            </SafeAreaView>
+        </MenuProvider>
     )
 }
 
