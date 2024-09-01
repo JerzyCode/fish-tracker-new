@@ -9,7 +9,6 @@
     "english": "English",
     "polish": "Polish"
   },
-
   "register-screen": {
     "sign-up": "Sign Up",
     "email": "Email",
@@ -20,6 +19,9 @@
     "name-error": "Name requires min. 3 characters.",
     "email-error": "Email is invalid.",
     "password-error": "Password requires at least 8 characters and 1 big letter.",
-    "confirm-password-error": "Password do not match."
+    "confirm-password-error": "Password do not match.",
+    "register-username-taken": "Email is already taken.",
+    "register-success": "Successfully signed up!",
+    "register-fail": "Error occurred during signing up."
   }
 }

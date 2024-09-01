@@ -16,8 +16,9 @@ export const REGISTER_SCREEN_NAV = "RegisterScreenNav"
 export const HOME_SCREEN_NAV = "HomeScreenNav"
 
 const Stack = createStackNavigator();
-
+export const SERVER_URL = "https://fish-tracker.onrender.com/fish-tracker"
 enableScreens();
+
 
 function App(): React.JSX.Element {
     console.debug('Launched App!')
