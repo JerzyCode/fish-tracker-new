@@ -1,6 +1,6 @@
 import React from "react";
 import LinearGradient from "react-native-linear-gradient";
-import {bgGradientColors, globalStyles} from "../GlobalStyles.tsx";
+import {bgGradientColors, darkBlueColor, globalStyles} from "../GlobalStyles.tsx";
 import {Text} from "react-native";
 import BackButton from "../components/BackButton.tsx";
 
@@ -11,7 +11,7 @@ function LoginScreen({navigation}: any): React.JSX.Element {
         <LinearGradient
             colors={bgGradientColors}
             style={globalStyles.container}>
-            <BackButton navigation={navigation}/>
+            <BackButton navigation={navigation} color={darkBlueColor}/>
             <Text>
                 LOGIN SCREEN
             </Text>

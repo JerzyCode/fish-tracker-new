@@ -8,5 +8,19 @@
   "language-menu": {
     "english": "Angielski",
     "polish": "Polski"
+  },
+  "register-screen": {
+    "sign-up": "Rejestracja",
+    "email": "Email",
+    "name": "Twoje imię",
+    "password": "Hasło",
+    "enter-inputs": "Wprowadź dane",
+    "confirm-password": "Potwierdź hasło",
+    "name-error": "Imie musi posiadać conajmniej 3 znaki.",
+    "email-error": "Email jest niepoprawny.",
+    "password-error": "Hasło musi posiadać conajmniej 8 znaków i 1 dużą literę.",
+    "confirm-password-error": "Hasła do siebie nie pasują."
+
+
   }
 }
