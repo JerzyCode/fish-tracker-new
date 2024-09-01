@@ -11,7 +11,6 @@ import {MenuProvider} from "react-native-popup-menu";
 
 function HomeScreen({navigation}: any): React.JSX.Element {
     const {t} = useTranslation()
-    //TODO lock orientation
 
     const handleLogin = () => {
         navigation.navigate(LOGIN_SCREEN_NAV)

@@ -19,7 +19,7 @@ i18n
         resources,
         compatibilityJSON: 'v3',
         lng: 'pl',
-        debug: true,
+        debug: false,
         interpolation: {
             escapeValue: false,
         },
