@@ -24,7 +24,6 @@ function HomeScreen({navigation}: any): React.JSX.Element {
     return (
         <MenuProvider>
             <LanguageMenu/>
-
             <SafeAreaView style={globalStyles.container}>
                 <LinearGradient colors={bgGradientColors} style={globalStyles.container}>
                     <View style={styles.textContainer}>
