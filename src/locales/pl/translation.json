@@ -1,7 +1,9 @@
 {
   "home-screen": {
     "login": "Zaloguj się",
-    "register": "Zarejestruj się"
+    "register": "Zarejestruj się",
+    "begin": "Zaczynajmy!",
+    "already-have-account": "Posiadasz już konto?"
   },
   "language-menu": {
     "english": "Angielski",

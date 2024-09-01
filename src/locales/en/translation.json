@@ -1,7 +1,9 @@
 {
   "home-screen": {
     "login": "Sign in",
-    "register": "Sign up"
+    "register": "Sign up",
+    "begin": "Let's get started!",
+    "already-have-account": "Already have account?"
   },
   "language-menu": {
     "english": "English",

@@ -1,6 +1,6 @@
 import React from "react";
 import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {bgGradientColors, globalStyles} from "../GlobalStyles.tsx";
+import {bgGradientColors, blueColor, globalStyles} from "../GlobalStyles.tsx";
 
 import logo from '../../assets/app-logo.png';
 import LinearGradient from "react-native-linear-gradient";
@@ -28,19 +28,27 @@ function HomeScreen({navigation}: any): React.JSX.Element {
             <SafeAreaView style={globalStyles.container}>
                 <LinearGradient colors={bgGradientColors} style={globalStyles.container}>
                     <View style={styles.textContainer}>
-                        <Text style={styles.appName}>Fish Tracker</Text>
+                        <Text style={styles.startText}>{t('home-screen.begin')}</Text>
                     </View>
                     <View style={styles.logoContainer}>
                         <Image source={logo} style={styles.logo} resizeMode="contain"/>
                     </View>
 
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                            <Text style={styles.buttonText}>{t('home-screen.login')}</Text>
-                        </TouchableOpacity>
                         <TouchableOpacity style={styles.button} onPress={handleRegister}>
                             <Text style={styles.buttonText}>{t('home-screen.register')}</Text>
                         </TouchableOpacity>
+                        <View style={{flexDirection: 'row'}}>
+                            <Text style={{color: '#FFFFFF', fontSize: 15}}>
+                                {t('home-screen.already-have-account')}
+                            </Text>
+                            <TouchableOpacity onPress={handleLogin}>
+                                <Text style={{color: blueColor, fontSize: 15, marginLeft: 5, fontWeight: 'bold'}}>
+                                    {t('home-screen.login')}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
                 </LinearGradient>
             </SafeAreaView>
@@ -61,12 +69,12 @@ const styles = StyleSheet.create({
         aspectRatio: 2,
     },
     textContainer: {
-        marginBottom: 20,
+        marginBottom: 100,
         alignItems: 'center',
     },
-    appName: {
+    startText: {
         fontSize: 40,
-        color: '#5397fd',
+        color: '#FFFFFF',
         fontFamily: 'Roboto-Regular',
         fontWeight: 'bold',
         letterSpacing: 1.2,
@@ -78,7 +86,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     button: {
-        width: 240,
+        width: 275,
         backgroundColor: '#5397fd',
         padding: 15,
         borderRadius: 10,
