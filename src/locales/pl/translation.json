@@ -34,5 +34,10 @@
     "invalid-credentials": "Niepoprawne dane",
     "email-error": "Email jest niepoprawny.",
     "password-error": "Hasło musi posiadać conajmniej 8 znaków i 1 dużą literę."
+  },
+  "app-drawer-nav": {
+    "home": "Strona główna",
+    "logout": "Wyloguj się",
+    "success-logout": "Pomyślnie wylogowano!"
   }
 }

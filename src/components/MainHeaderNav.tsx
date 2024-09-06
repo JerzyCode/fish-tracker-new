@@ -3,10 +3,11 @@ import React from "react";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {purpleColor} from "../GlobalStyles.tsx";
 
-function MainHeaderNav(): React.JSX.Element {
+function MainHeaderNav({navigation}: any): React.JSX.Element {
+
 
     const openDrawer = () => {
-        console.debug('open drawer')
+        navigation.toggleDrawer()
     }
 
     return (
