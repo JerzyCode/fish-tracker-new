@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import LinearGradient from "react-native-linear-gradient";
 import {blueGradient, darkBlueColor, globalStyles} from "../GlobalStyles.tsx";
 import {ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
@@ -8,6 +8,8 @@ import {useInfoBar} from "../contexts/InfoBarContext.tsx";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import {ApiResponseType, UserLoginRequest} from "../shared/classes.ts";
 import {loginUser} from "../services/UserService.ts";
+import {HOME_SCREEN_NAV} from "../../App.tsx";
+import {AuthContext} from "../contexts/AuthContext.tsx";
 
 
 function LoadingFragment(): React.JSX.Element {
@@ -19,7 +21,7 @@ function LoadingFragment(): React.JSX.Element {
 }
 
 function LoginScreen({navigation}: any): React.JSX.Element {
-
+    const login = useContext(AuthContext)?.login;
     const {t} = useTranslation()
     const {dispatch} = useInfoBar();
     const [email, setEmail] = useState('');
@@ -91,6 +93,16 @@ function LoginScreen({navigation}: any): React.JSX.Element {
 
     }
 
+    const onSaveDataInStorage = (response: any) => {
+        const token = response.body.token
+        const userId = response.body.userId
+        const username = response.body.name
+
+        if (login) {
+            login(token, userId, username)
+        }
+    }
+
     const handleLoginRequest = (request: UserLoginRequest) => {
         setIsLoading(true)
         loginUser(request)
@@ -98,8 +110,8 @@ function LoginScreen({navigation}: any): React.JSX.Element {
                 if (response.type === ApiResponseType.SUCCESS) {
                     showSuccessInfoBar(t('login-screen.login-success'))
                     resetInputs()
-                    // navigation.navigate(LOGIN_SCREEN_NAV)
-                    console.debug("LOGGED IN!!")
+                    onSaveDataInStorage(response)
+                    navigation.navigate(HOME_SCREEN_NAV)
                 } else if (response.type === ApiResponseType.INVALID_CREDENTIALS) {
                     showErrorInfoBar(t('login-screen.invalid-credentials'))
                 } else {
