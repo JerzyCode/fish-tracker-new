@@ -1,47 +1,18 @@
-import {createStackNavigator} from "@react-navigation/stack";
 import {HOME_SCREEN_NAV, MAIN_SCREEN_NAV} from "../../App.tsx";
 import MainScreen from "../screens/MainScreen.tsx";
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import HomeScreen from "../screens/HomeScreen.tsx";
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 
 const AppStack = () => {
     return (
-        <Stack.Navigator
-            initialRouteName={HOME_SCREEN_NAV}
-            screenOptions={{
-                headerShown: false,
-                gestureEnabled: true,
-                transitionSpec: {
-                    open: {animation: 'timing', config: {duration: 500}},
-                    close: {animation: 'timing', config: {duration: 300}},
-                },
-                cardStyleInterpolator: ({current, next, layouts}) => {
-                    return {
-                        cardStyle: {
-                            transform: [
-                                {
-                                    translateY: current.progress.interpolate({
-                                        inputRange: [0, 1],
-                                        outputRange: [layouts.screen.height, 0],
-                                    }),
-                                },
-                            ],
-                            opacity: current.progress.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [0, 1],
-                            }),
-                        },
-                    };
-                },
-            }}
-        >
-            <Stack.Screen
-                name={MAIN_SCREEN_NAV}
-                component={MainScreen}
-                options={{gestureEnabled: false}}
-            />
-        </Stack.Navigator>
+        <Drawer.Navigator initialRouteName={MAIN_SCREEN_NAV}>
+            <Drawer.Screen name={MAIN_SCREEN_NAV} component={MainScreen}/>
+            <Drawer.Screen name={HOME_SCREEN_NAV} component={HomeScreen}/>
+        </Drawer.Navigator>
+
     )
 }
 

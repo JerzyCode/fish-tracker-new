@@ -6,6 +6,8 @@ import Orientation from "react-native-orientation-locker";
 import {InfoBarProvider} from "./src/contexts/InfoBarContext.tsx";
 import RootStack from "./src/navigation/RootStack.tsx";
 import {AuthProvider} from "./src/contexts/AuthContext.tsx";
+import 'react-native-gesture-handler';
+
 
 export const LOGIN_SCREEN_NAV = "LoginScreenNav"
 export const REGISTER_SCREEN_NAV = "RegisterScreenNav"
@@ -34,7 +36,6 @@ function App(): React.JSX.Element {
                 </InfoBarProvider>
             </AuthProvider>
         </I18nextProvider>
-
     );
 }
 

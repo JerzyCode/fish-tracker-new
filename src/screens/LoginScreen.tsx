@@ -8,7 +8,6 @@ import {useInfoBar} from "../contexts/InfoBarContext.tsx";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import {ApiResponseType, UserLoginRequest} from "../shared/classes.ts";
 import {loginUser} from "../services/UserService.ts";
-import {HOME_SCREEN_NAV} from "../../App.tsx";
 import {AuthContext} from "../contexts/AuthContext.tsx";
 
 
@@ -111,7 +110,7 @@ function LoginScreen({navigation}: any): React.JSX.Element {
                     showSuccessInfoBar(t('login-screen.login-success'))
                     resetInputs()
                     onSaveDataInStorage(response)
-                    navigation.navigate(HOME_SCREEN_NAV)
+                    navigation.navigate("App")
                 } else if (response.type === ApiResponseType.INVALID_CREDENTIALS) {
                     showErrorInfoBar(t('login-screen.invalid-credentials'))
                 } else {

@@ -7,7 +7,6 @@ import AppStack from "./AppStack.tsx";
 
 const Stack = createStackNavigator();
 
-
 function RootStack() {
     const authContext = useContext(AuthContext);
     return (
