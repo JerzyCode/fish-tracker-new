@@ -6,6 +6,8 @@ import BackButton from "../components/BackButton.tsx";
 import {useTranslation} from "react-i18next";
 import {useInfoBar} from "../contexts/InfoBarContext.tsx";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
+import {ApiResponseType, UserLoginRequest} from "../shared/classes.ts";
+import {loginUser} from "../services/UserService.ts";
 
 
 function LoadingFragment(): React.JSX.Element {
@@ -49,16 +51,64 @@ function LoginScreen({navigation}: any): React.JSX.Element {
         });
     }
 
+    const isValidEmail = (): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const isValidPassword = (): boolean => {
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasMinLength = password.length >= 8;
+        return hasUpperCase && hasMinLength;
+    };
 
     const resetInputs = () => {
         setEmail('')
         setPassword('')
     }
 
+    const validateInputs = (): boolean => {
+        if (!isValidEmail()) {
+            showErrorInfoBar(t('login-screen.email-error'))
+            return false
+        }
 
-    const onRegisterButton = () => {
+        if (!isValidPassword()) {
+            showErrorInfoBar(t('register-screen.password-error'))
+            setPassword('')
+            return false;
+        }
 
+        return true
+    }
 
+    const onLoginButton = () => {
+        if (!validateInputs()) {
+            return
+        }
+        const loginRequest = new UserLoginRequest(email, password)
+        handleLoginRequest(loginRequest)
+
+    }
+
+    const handleLoginRequest = (request: UserLoginRequest) => {
+        setIsLoading(true)
+        loginUser(request)
+            .then(response => {
+                if (response.type === ApiResponseType.SUCCESS) {
+                    showSuccessInfoBar(t('login-screen.login-success'))
+                    resetInputs()
+                    // navigation.navigate(LOGIN_SCREEN_NAV)
+                    console.debug("LOGGED IN!!")
+                } else if (response.type === ApiResponseType.INVALID_CREDENTIALS) {
+                    showErrorInfoBar(t('login-screen.invalid-credentials'))
+                } else {
+                    showErrorInfoBar(t('login-screen.login-fail'))
+                }
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
 
@@ -97,7 +147,7 @@ function LoginScreen({navigation}: any): React.JSX.Element {
                                 secureTextEntry
                             />
 
-                            <TouchableOpacity style={globalStyles.rlFormInputActionBtn} onPress={onRegisterButton}>
+                            <TouchableOpacity style={globalStyles.rlFormInputActionBtn} onPress={onLoginButton}>
                                 <Text
                                     style={globalStyles.rlFormInputActionBtnText}>{t('login-screen.login')}</Text>
                             </TouchableOpacity>

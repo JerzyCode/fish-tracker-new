@@ -30,6 +30,9 @@
     "password": "Hasło",
     "enter-inputs": "Wprowadź dane",
     "login-success": "Pomyślnie zalogowano!",
-    "login-fail": "Niepoprawne dane, spróbuj ponownie!",
+    "login-fail": "Coś poszło nie tak, spróbuj ponownie!",
+    "invalid-credentials": "Niepoprawne dane",
+    "email-error": "Email jest niepoprawny.",
+    "password-error": "Hasło musi posiadać conajmniej 8 znaków i 1 dużą literę."
   }
 }

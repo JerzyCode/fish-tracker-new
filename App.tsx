@@ -10,6 +10,7 @@ import RootStack from "./src/navigation/RootStack.tsx";
 export const LOGIN_SCREEN_NAV = "LoginScreenNav"
 export const REGISTER_SCREEN_NAV = "RegisterScreenNav"
 export const HOME_SCREEN_NAV = "HomeScreenNav"
+export const MAIN_SCREEN_NAV = "MainScreenNav"
 
 const Stack = createStackNavigator();
 export const SERVER_URL = "https://fish-tracker.onrender.com/fish-tracker"

@@ -30,6 +30,9 @@
     "password": "Password",
     "enter-inputs": "Enter data",
     "login-success": "Successfully signed in!",
-    "login-fail": "Invalid data, try again!"
+    "login-fail": "Something went wrong, try again!",
+    "invalid-credentials": "Invalid credentials",
+    "email-error": "Email is invalid.",
+    "password-error": "Password requires at least 8 characters and 1 big letter."
   }
 }
