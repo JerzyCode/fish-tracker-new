@@ -41,14 +41,17 @@ const AuthStack = () => {
             <Stack.Screen
                 name={HOME_SCREEN_NAV}
                 component={HomeScreen}
+                options={{ gestureEnabled: false }}
             />
             <Stack.Screen
                 name={REGISTER_SCREEN_NAV}
                 component={RegisterScreen}
+                options={{ gestureEnabled: false }}
             />
             <Stack.Screen
                 name={LOGIN_SCREEN_NAV}
                 component={LoginScreen}
+                options={{ gestureEnabled: false }}
             />
         </Stack.Navigator>
     )

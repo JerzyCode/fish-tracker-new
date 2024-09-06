@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import LinearGradient from "react-native-linear-gradient";
-import {blueGradient, darkBlueColor} from "../GlobalStyles.tsx";
+import {blueGradient, darkBlueColor, globalStyles} from "../GlobalStyles.tsx";
 import {ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import BackButton from "../components/BackButton.tsx";
 import {useTranslation} from "react-i18next";
@@ -12,7 +12,7 @@ import {LOGIN_SCREEN_NAV} from "../../App.tsx";
 
 function LoadingFragment(): React.JSX.Element {
     return (
-        <View style={styles.inputsView}>
+        <View style={globalStyles.rlFormInputView}>
             <ActivityIndicator size="large" animating={true}/>
         </View>
     )
@@ -26,7 +26,34 @@ function RegisterScreen({navigation}: any): React.JSX.Element {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false)
+    const [validEmail, setIsValidEmail] = useState(true)
+    const [validName, setIsValidName] = useState(true)
+    const [validPassword, setIsValidPassword] = useState(true)
+    const [validConfirmPassword, setIsValidConfirmPassword] = useState(true)
 
+    useEffect(() => {
+        if (!validName) {
+            setIsValidName(isValidName)
+        }
+    }, [name]);
+
+    useEffect(() => {
+        if (!validEmail) {
+            setIsValidEmail(isValidEmail)
+        }
+    }, [email])
+
+    useEffect(() => {
+        if (!validPassword) {
+            setIsValidPassword(isValidPassword)
+        }
+    }, [password])
+
+    useEffect(() => {
+        if (!validConfirmPassword) {
+            setIsValidConfirmPassword(isValidConfirmPassword)
+        }
+    }, [confirmPassword])
 
     const showSuccessInfoBar = (message: string) => {
         dispatch({
@@ -52,7 +79,9 @@ function RegisterScreen({navigation}: any): React.JSX.Element {
         });
     }
 
+
     const isValidName = (): boolean => {
+        console.debug("isValidName, name=" + name)
         return name.length >= 3
     }
 
@@ -81,23 +110,34 @@ function RegisterScreen({navigation}: any): React.JSX.Element {
     const validateInputs = (): boolean => {
         if (!isValidName()) {
             showErrorInfoBar(t('register-screen.name-error'))
+            setIsValidName(false)
             return false;
         }
+        setIsValidName(true)
 
         if (!isValidEmail()) {
             showErrorInfoBar(t('register-screen.email-error'))
+            setIsValidEmail(false)
             return false;
         }
+        setIsValidEmail(true)
+
 
         if (!isValidPassword()) {
             showErrorInfoBar(t('register-screen.password-error'))
+            setIsValidPassword(false)
             return false;
         }
+        setIsValidPassword(true)
+
 
         if (!isValidConfirmPassword()) {
             showErrorInfoBar(t('register-screen.confirm-password-error'))
+            setIsValidConfirmPassword(false)
             return false;
         }
+        setIsValidConfirmPassword(true)
+
 
         return true
     }
@@ -141,15 +181,15 @@ function RegisterScreen({navigation}: any): React.JSX.Element {
                     colors={blueGradient}
                     style={styles.contentContainer}>
 
-                    <View style={styles.headerView}>
-                        <Text style={styles.viewTitle}>{t('register-screen.sign-up')}</Text>
+                    <View style={globalStyles.rlFormInputHeaderView}>
+                        <Text style={globalStyles.rlFormInputHeaderText}>{t('register-screen.sign-up')}</Text>
                     </View>
 
                     {isLoading ? <LoadingFragment/> :
-                        <View style={styles.inputsView}>
-                            <Text style={styles.enterInputsText}>{t('register-screen.enter-inputs')}</Text>
+                        <View style={globalStyles.rlFormInputView}>
+                            <Text style={globalStyles.rlFormEnterInputText}>{t('register-screen.enter-inputs')}</Text>
                             <TextInput
-                                style={styles.input}
+                                style={[globalStyles.rlFormInput, {borderColor: validName ? darkBlueColor : 'red'}]}
                                 placeholder={t('register-screen.name')}
                                 value={name}
                                 onChangeText={setName}
@@ -157,7 +197,7 @@ function RegisterScreen({navigation}: any): React.JSX.Element {
                             />
 
                             <TextInput
-                                style={styles.input}
+                                style={[globalStyles.rlFormInput, {borderColor: validEmail ? darkBlueColor : 'red'}]}
                                 placeholder={t('register-screen.email')}
                                 value={email}
                                 onChangeText={setEmail}
@@ -166,7 +206,7 @@ function RegisterScreen({navigation}: any): React.JSX.Element {
                             />
 
                             <TextInput
-                                style={styles.input}
+                                style={[globalStyles.rlFormInput, {borderColor: validPassword ? darkBlueColor : 'red'}]}
                                 placeholder={t('register-screen.password')}
                                 value={password}
                                 onChangeText={setPassword}
@@ -174,14 +214,15 @@ function RegisterScreen({navigation}: any): React.JSX.Element {
                             />
 
                             <TextInput
-                                style={styles.input}
+                                style={[globalStyles.rlFormInput, {borderColor: validConfirmPassword ? darkBlueColor : 'red'}]}
                                 placeholder={t('register-screen.confirm-password')}
                                 value={confirmPassword}
                                 onChangeText={setConfirmPassword}
                                 secureTextEntry
                             />
-                            <TouchableOpacity style={styles.registerButton} onPress={onRegisterButton}>
-                                <Text style={styles.registerText}>{t('register-screen.sign-up')}</Text>
+                            <TouchableOpacity style={globalStyles.rlFormInputActionBtn} onPress={onRegisterButton}>
+                                <Text
+                                    style={globalStyles.rlFormInputActionBtnText}>{t('register-screen.sign-up')}</Text>
                             </TouchableOpacity>
                         </View>
                     }
@@ -199,72 +240,6 @@ const styles = StyleSheet.create({
     contentContainer: {
         flexGrow: 1,
         width: '100%',
-    },
-    viewTitle: {
-        fontSize: 36,
-        color: darkBlueColor,
-        fontFamily: 'Roboto-Regular',
-        fontWeight: 'bold',
-        letterSpacing: 1.2,
-        textAlign: 'center',
-        marginVertical: 50
-    },
-    enterInputsText: {
-        fontSize: 25,
-        color: darkBlueColor,
-        fontFamily: 'Roboto-Regular',
-        fontWeight: 'bold',
-        letterSpacing: 1.2,
-        textAlign: 'center',
-        marginBottom: 25
-    },
-    headerView: {
-        flex: 4,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    inputsView: {
-        flex: 7,
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 3,
-        borderTopLeftRadius: 40,
-        borderTopRightRadius: 40,
-        padding: 25,
-        overflow: 'hidden'
-    },
-    input: {
-        height: 55,
-        width: 270,
-        borderColor: darkBlueColor,
-        borderWidth: 2,
-        borderRadius: 15,
-        paddingHorizontal: 10,
-        marginBottom: 10,
-        backgroundColor: 'transparent',
-        color: 'black',
-        fontSize: 18,
-    },
-    inputFail: {
-        borderColor: 'red',
-    },
-    registerButton: {
-        height: 50,
-        width: 270,
-        marginVertical: 25,
-        backgroundColor: 'lightgreen',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 2,
-        borderRadius: 15,
-    },
-    registerText: {
-        fontSize: 18,
-        color: 'black',
-        fontFamily: 'Roboto-Regular',
-        fontWeight: 'bold',
     }
 })
 
