@@ -23,5 +23,13 @@
     "register-username-taken": "Email is already taken.",
     "register-success": "Successfully signed up!",
     "register-fail": "Error occurred during signing up."
+  },
+  "login-screen": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "enter-inputs": "Enter data",
+    "login-success": "Successfully signed in!",
+    "login-fail": "Invalid data, try again!"
   }
 }

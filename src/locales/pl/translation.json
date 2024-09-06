@@ -23,7 +23,13 @@
     "register-username-taken": "Email jest już zajęty.",
     "register-success": "Pomyślnie zarejestrowano!",
     "register-fail": "Wystąpił problem podczas rejestracji."
-
-
+  },
+  "login-screen": {
+    "login": "Logowanie",
+    "email": "Email",
+    "password": "Hasło",
+    "enter-inputs": "Wprowadź dane",
+    "login-success": "Pomyślnie zalogowano!",
+    "login-fail": "Niepoprawne dane, spróbuj ponownie!",
   }
 }
