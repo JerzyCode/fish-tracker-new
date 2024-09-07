@@ -61,7 +61,7 @@ const RandomFishFragment = ({
                         showErrorInfoBar(t('best-fish-fragment.image-load-fail'))
                     }
                 })
-                .catch(err => {
+                .catch(() => {
                     showErrorInfoBar(t('best-fish-fragment.image-load-fail'))
                 })
                 .finally(() => {
@@ -79,10 +79,11 @@ const RandomFishFragment = ({
     return (
         <TouchableOpacity style={styles.container} onPress={() => goToFishDetailsView()}>
             <View style={styles.contentContainer}>
-                <View style={styles.userView}>
-                    <Icon name="user" size={25} color={darkBlueColor}/>
-                    <Text style={styles.username}>{username}</Text>
-                </View>
+                {/*TODO dorobić że zwraca tez username po be*/}
+                {/*<View style={styles.userView}>*/}
+                {/*    <Icon name="user" size={25} color={darkBlueColor}/>*/}
+                {/*    <Text style={styles.username}>{username}</Text>*/}
+                {/*</View>*/}
                 <Text style={styles.specie}>{t('fish.specie')}: {specie}</Text>
                 <View style={styles.sizeRow}>
                     <Text style={styles.smallText}>{t("fish.size")}: {size}{SIZE_SUFFIX}</Text>

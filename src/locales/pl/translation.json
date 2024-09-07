@@ -51,8 +51,11 @@
   },
   "main-screen": {
     "random-fish": "Losowy połów",
-    "best-fish-fragment": {
-      "image-load-fail": "Nie udało się pobrać zdjęcia ryby :("
-    }
+    "random-fish-load-error": "Nie udalo się pobrać losowego połowu :(",
+    "reload-random-fish": "Pobierz nowy losowy połów"
+
+  },
+  "best-fish-fragment": {
+    "image-load-fail": "Nie udało się pobrać zdjęcia ryby :("
   }
 }

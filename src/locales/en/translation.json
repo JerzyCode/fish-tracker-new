@@ -50,7 +50,9 @@
     "date": "Date"
   },
   "main-screen": {
-    "random-fish": "Random fish"
+    "random-fish": "Random fish",
+    "random-fish-load-error": "Failed to load random fish :(",
+    "reload-random-fish": "Get new random fish"
   },
   "best-fish-fragment": {
     "image-load-fail": "Failed to load fish image :("

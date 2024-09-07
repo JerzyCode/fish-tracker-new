@@ -22,6 +22,8 @@ export const getRandomFish = async (): Promise<ApiResponse> => {
 
         const json = await response.json()
 
+        console.debug('response json=' + JSON.stringify(json))
+
         if (response.ok) {
             return new ApiResponse(ApiResponseType.SUCCESS, json)
         } else {
