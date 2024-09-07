@@ -42,5 +42,17 @@
     "your-fishes": "Twoje połowy",
     "your-profile": "Twój profil",
     "settings": "Ustawienia"
+  },
+  "fish": {
+    "specie": "Gatunek",
+    "size": "Rozmiar",
+    "weight": "Waga",
+    "date": "Data"
+  },
+  "main-screen": {
+    "random-fish": "Losowy połów",
+    "best-fish-fragment": {
+      "image-load-fail": "Nie udało się pobrać zdjęcia ryby :("
+    }
   }
 }

@@ -88,7 +88,12 @@ export const globalStyles = StyleSheet.create({
         color: 'black',
         fontFamily: 'Roboto-Regular',
         fontWeight: 'bold',
-    }
+    },
 
+    imagePlaceholder: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'contain',
+    },
 
 })

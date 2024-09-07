@@ -42,5 +42,17 @@
     "your-fishes": "Your Fishes",
     "your-profile": "Your profile",
     "settings": "Settings"
+  },
+  "fish": {
+    "specie": "Specie",
+    "size": "Size",
+    "weight": "Weight",
+    "date": "Date"
+  },
+  "main-screen": {
+    "random-fish": "Random fish"
+  },
+  "best-fish-fragment": {
+    "image-load-fail": "Failed to load fish image :("
   }
 }
