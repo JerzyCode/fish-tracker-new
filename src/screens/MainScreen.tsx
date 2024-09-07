@@ -71,19 +71,26 @@ function MainScreen({navigation}: any): React.JSX.Element {
                 style={styles.contentContainer}>
                 <Text style={styles.header}>{t('main-screen.random-fish')}</Text>
 
-                {isRandomFishLoading || !randomFish ? <LoadingFragment style={styles.loadingFragment}/> :
-                    <RandomFishFragment fishId={randomFish.id}
-                                        username={randomFish.username}
-                                        specie={randomFish.specie}
-                                        size={randomFish.size}
-                                        weight={randomFish.weight}
-                                        date={randomFish.date}
-                                        navigation={navigation}/>
+                {isRandomFishLoading || !randomFish ?
+                    <LoadingFragment style={styles.fishFragment}/> :
+                    <View style={styles.fishFragment}>
+                        <RandomFishFragment fishId={randomFish.id}
+                                            username={randomFish.username}
+                                            specie={randomFish.specie}
+                                            size={randomFish.size}
+                                            weight={randomFish.weight}
+                                            date={randomFish.date}
+                                            navigation={navigation}/>
+                    </View>
+
                 }
 
                 <TouchableOpacity style={globalStyles.rlFormInputActionBtn} onPress={onNewRandomFish}>
                     <Text style={globalStyles.rlFormInputActionBtnText}>{t('main-screen.reload-random-fish')}</Text>
                 </TouchableOpacity>
+
+                <Text style={styles.footer}>{t('main-screen.press-fish-info')}</Text>
+
             </LinearGradient>
         </View>
     )
@@ -93,8 +100,14 @@ function MainScreen({navigation}: any): React.JSX.Element {
 const styles = StyleSheet.create({
     contentContainer: {
         flexGrow: 1,
+        paddingTop: 50,
         padding: 5,
         width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    fishFragment: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -103,14 +116,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: darkBlueColor,
         textAlign: 'center',
-        marginBottom: 20
     },
-    loadingFragment: {
-        padding: 150,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '66%',
-        width: '100%',
+    footer: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: darkBlueColor,
+        textAlign: 'center',
+        marginBottom: 15
     }
 })
 export default MainScreen

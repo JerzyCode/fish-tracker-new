@@ -2,7 +2,7 @@ import {ImageBackground, StyleSheet, Text, TouchableOpacity, View} from "react-n
 import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 
-import {darkBlueColor, randomFishFragmentBgColor, randomFishFragmentFontColor} from "../GlobalStyles.tsx";
+import {darkBlueColor, darkGray, randomFishFragmentFontColor} from "../GlobalStyles.tsx";
 import LoadingFragment from "./LoadingFragment.tsx";
 import {getFishImage} from "../services/FishService.ts";
 import {ApiResponseType} from "../shared/classes.ts";
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderWidth: 2,
         borderColor: darkBlueColor,
-        backgroundColor: randomFishFragmentBgColor
+        backgroundColor: darkGray
     },
     sizeRow: {
         flexDirection: 'row',

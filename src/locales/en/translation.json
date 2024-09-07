@@ -52,9 +52,14 @@
   "main-screen": {
     "random-fish": "Random fish",
     "random-fish-load-error": "Failed to load random fish :(",
-    "reload-random-fish": "Get new random fish"
+    "reload-random-fish": "Get new random fish",
+    "press-fish-info": "Press on fish to see details."
   },
   "best-fish-fragment": {
     "image-load-fail": "Failed to load fish image :("
+  },
+  "settings-screen": {
+    "language": "Select language",
+    "close": "Close"
   }
 }

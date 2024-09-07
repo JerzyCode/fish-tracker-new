@@ -6,8 +6,9 @@ export const blueGradient = ['#5397fd', '#6826a6']
 export const purpleColor = '#6826a6'
 export const blueColor = '#5397fd'
 export const darkBlueColor = '#08144b'
-export const randomFishFragmentBgColor = '#31363F'
+export const darkGray = '#31363F'
 export const randomFishFragmentFontColor = '#EEEEEE'
+export const lightGreen = 'lightgreen'
 
 export const globalStyles = StyleSheet.create({
     container: {
