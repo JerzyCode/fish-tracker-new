@@ -6,6 +6,8 @@ export const blueGradient = ['#5397fd', '#6826a6']
 export const purpleColor = '#6826a6'
 export const blueColor = '#5397fd'
 export const darkBlueColor = '#08144b'
+export const randomFishFragmentBgColor = '#31363F'
+export const randomFishFragmentFontColor = '#EEEEEE'
 
 export const globalStyles = StyleSheet.create({
     container: {
@@ -89,11 +91,4 @@ export const globalStyles = StyleSheet.create({
         fontFamily: 'Roboto-Regular',
         fontWeight: 'bold',
     },
-
-    imagePlaceholder: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'contain',
-    },
-
 })

@@ -22,8 +22,6 @@ export const getRandomFish = async (): Promise<ApiResponse> => {
 
         const json = await response.json()
 
-        console.debug('response json=' + JSON.stringify(json))
-
         if (response.ok) {
             return new ApiResponse(ApiResponseType.SUCCESS, json)
         } else {
@@ -43,7 +41,6 @@ export const getFishImage = async (fishId: number): Promise<ApiResponse> => {
         console.error('No token found');
         return new ApiResponse(ApiResponseType.ERROR, null);
     }
-
 
     try {
         const response = await fetch(SERVER_URL + '/rest/api/fish/image/' + fishId, {

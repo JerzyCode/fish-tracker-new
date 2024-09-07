@@ -1,9 +1,8 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {ImageBackground, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import {darkBlueColor, globalStyles} from "../GlobalStyles.tsx";
+import {darkBlueColor, randomFishFragmentBgColor, randomFishFragmentFontColor} from "../GlobalStyles.tsx";
 import LoadingFragment from "./LoadingFragment.tsx";
 import {getFishImage} from "../services/FishService.ts";
 import {ApiResponseType} from "../shared/classes.ts";
@@ -90,14 +89,15 @@ const RandomFishFragment = ({
                     <Text style={styles.smallText}>{t('fish.weight')}: {weight}{WEIGHT_SUFFIX}</Text>
                 </View>
             </View>
-
             <View>
                 <View style={styles.imageContainer}>
                     {isLoadingImage || !fishImageUrl ? <LoadingFragment style={styles.loadingFragment}/> :
-                        <Image
+                        <ImageBackground
                             source={{uri: fishImageUrl}}
-                            style={globalStyles.imagePlaceholder}/>}
-                    {/*    TODO przeskalować ten image żeby ładnie wygladał*/}
+                            resizeMode={"contain"}
+                            style={styles.image}
+                            imageStyle={styles.imageStyle}
+                        />}
                 </View>
             </View>
 
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderWidth: 2,
         borderColor: darkBlueColor,
-        backgroundColor: 'transparent'
+        backgroundColor: randomFishFragmentBgColor
     },
     sizeRow: {
         flexDirection: 'row',
@@ -140,35 +140,38 @@ const styles = StyleSheet.create({
     },
     specie: {
         fontSize: 18,
-        color: 'black',
+        fontWeight: 'bold',
+        color: randomFishFragmentFontColor,
     },
     smallText: {
         fontSize: 16,
         marginLeft: 5,
         marginRight: 5,
-        marginBottom: 15,
-        color: 'black',
+        color: randomFishFragmentFontColor,
     },
-
     dateText: {
-        marginTop: 15,
         fontSize: 16,
-        color: 'black',
+        color: randomFishFragmentFontColor,
         fontWeight: 'bold'
     },
     imageContainer: {
-        borderWidth: 2,
-        borderRadius: 10,
+        marginVertical: 10,
+        height: 200,
+        width: 280,
+        borderRadius: 15,
         overflow: 'hidden',
-        borderColor: darkBlueColor,
-        aspectRatio: 1,
-        width: '100%'
     },
     loadingFragment: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    image: {
+        flex: 1,
+    },
+    imageStyle: {
+        borderRadius: 15,
+    },
 });
 
 export default RandomFishFragment

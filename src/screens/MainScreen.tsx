@@ -43,7 +43,6 @@ function MainScreen({navigation}: any): React.JSX.Element {
             .then(response => {
                 if (response.type === ApiResponseType.SUCCESS) {
                     const fish = response.body
-                    console.debug("fish=" + JSON.stringify(fish))
                     setRandomFish(fish)
                 } else {
                     showErrorInfoBar(t('main-screen.random-fish-load-error'))
