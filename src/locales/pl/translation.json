@@ -38,6 +38,9 @@
   "app-drawer-nav": {
     "home": "Strona główna",
     "logout": "Wyloguj się",
-    "success-logout": "Pomyślnie wylogowano!"
+    "success-logout": "Pomyślnie wylogowano!",
+    "your-fishes": "Twoje połowy",
+    "your-profile": "Twój profil",
+    "settings": "Ustawienia"
   }
 }

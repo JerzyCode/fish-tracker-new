@@ -4,6 +4,7 @@ import {DrawerContentScrollView, DrawerItemList} from '@react-navigation/drawer'
 import {useTranslation} from "react-i18next";
 import {AuthContext} from "../contexts/AuthContext.tsx";
 import {useInfoBar} from "../contexts/InfoBarContext.tsx";
+import {darkBlueColor, purpleColor} from "../GlobalStyles.tsx";
 
 const CustomDrawerContent = (props: any) => {
     const {logout} = useContext(AuthContext) || {};
@@ -45,13 +46,15 @@ const CustomDrawerContent = (props: any) => {
 const styles = StyleSheet.create({
     drawerContent: {
         flexGrow: 1,
+        justifyContent: 'center'
     },
     drawerHeader: {
         padding: 20,
+        alignItems: 'center'
     },
     headerText: {
         fontSize: 20,
-        color: '#fff',
+        color: 'lightgreen',
         fontWeight: 'bold',
     },
     footer: {
@@ -61,12 +64,12 @@ const styles = StyleSheet.create({
     },
     logoutButton: {
         padding: 10,
-        backgroundColor: '#ff6347',
+        backgroundColor: purpleColor,
         borderRadius: 4,
-        marginHorizontal: 5,
     },
     logoutButtonText: {
-        color: 'white',
+        textAlign: 'center',
+        color: darkBlueColor,
         fontSize: 16,
         fontWeight: 'bold',
     },

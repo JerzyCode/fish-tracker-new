@@ -38,6 +38,9 @@
   "app-drawer-nav": {
     "home": "Home",
     "logout": "Logout",
-    "success-logout": "Successfully logout!"
+    "success-logout": "Successfully logout!",
+    "your-fishes": "Your Fishes",
+    "your-profile": "Your profile",
+    "settings": "Settings"
   }
 }
