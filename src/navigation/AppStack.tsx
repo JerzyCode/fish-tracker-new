@@ -1,4 +1,4 @@
-import {FISH_DETAILS_NAV, MAIN_SCREEN_NAV, SETTINGS_NAV, YOUR_FISHES_NAV} from "../../App.tsx";
+import {FISH_DETAILS_NAV, MAIN_SCREEN_NAV, SETTINGS_NAV, USER_FISHES_NAV} from "../../App.tsx";
 import MainScreen from "../screens/MainScreen.tsx";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import React from "react";
@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useTranslation} from "react-i18next";
 import CustomDrawerContent from "../components/CustomDrawerContent.tsx";
 import {darkBlueColor} from "../GlobalStyles.tsx";
-import YourFishesScreen from "../screens/YourFishesScreen.tsx";
+import UserFishesScreen from "../screens/UserFishesScreen.tsx";
 import SettingsScreen from "../screens/SettingsScreen.tsx";
 import FishDetailsScreen from "../screens/FishDetailsScreen.tsx";
 
@@ -56,8 +56,8 @@ const AppStack = () => {
                 }}
             />
             <Drawer.Screen
-                name={YOUR_FISHES_NAV}
-                component={YourFishesScreen}
+                name={USER_FISHES_NAV}
+                component={UserFishesScreen}
                 options={{
                     drawerLabel: t('app-drawer-nav.your-fishes'),
                     drawerIcon: ({focused, size}) => (
