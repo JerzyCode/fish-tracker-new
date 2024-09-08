@@ -7,6 +7,7 @@ import LoadingFragment from "./LoadingFragment.tsx";
 import {getFishImage} from "../services/FishService.ts";
 import {ApiResponseType} from "../shared/classes.ts";
 import {useInfoBar} from "../contexts/InfoBarContext.tsx";
+import {FISH_DETAILS_NAV} from "../../App.tsx";
 
 
 const SIZE_SUFFIX = "cm"
@@ -14,7 +15,6 @@ const WEIGHT_SUFFIX = "kg"
 
 interface BestFishProps {
     fishId: number,
-    username: string,
     specie: string,
     size: number,
     weight: number,
@@ -24,7 +24,6 @@ interface BestFishProps {
 
 const RandomFishFragment = ({
                                 fishId,
-                                username,
                                 specie,
                                 size,
                                 weight,
@@ -72,17 +71,12 @@ const RandomFishFragment = ({
     }, []);
 
     const goToFishDetailsView = () => {
-        console.log('go to fish details')
+        navigation.navigate(FISH_DETAILS_NAV)
     }
 
     return (
         <TouchableOpacity style={styles.container} onPress={() => goToFishDetailsView()}>
             <View style={styles.contentContainer}>
-                {/*TODO dorobić że zwraca tez username po be*/}
-                {/*<View style={styles.userView}>*/}
-                {/*    <Icon name="user" size={25} color={darkBlueColor}/>*/}
-                {/*    <Text style={styles.username}>{username}</Text>*/}
-                {/*</View>*/}
                 <Text style={styles.specie}>{t('fish.specie')}: {specie}</Text>
                 <View style={styles.sizeRow}>
                     <Text style={styles.smallText}>{t("fish.size")}: {size}{SIZE_SUFFIX}</Text>

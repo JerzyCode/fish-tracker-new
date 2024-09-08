@@ -1,4 +1,4 @@
-import {MAIN_SCREEN_NAV, SETTINGS_NAV, YOUR_FISHES_NAV} from "../../App.tsx";
+import {FISH_DETAILS_NAV, MAIN_SCREEN_NAV, SETTINGS_NAV, YOUR_FISHES_NAV} from "../../App.tsx";
 import MainScreen from "../screens/MainScreen.tsx";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import React from "react";
@@ -10,9 +10,9 @@ import CustomDrawerContent from "../components/CustomDrawerContent.tsx";
 import {darkBlueColor} from "../GlobalStyles.tsx";
 import YourFishesScreen from "../screens/YourFishesScreen.tsx";
 import SettingsScreen from "../screens/SettingsScreen.tsx";
+import FishDetailsScreen from "../screens/FishDetailsScreen.tsx";
 
 const Drawer = createDrawerNavigator();
-
 
 const AppStack = () => {
     const {t} = useTranslation();
@@ -21,7 +21,7 @@ const AppStack = () => {
         <Drawer.Navigator
             initialRouteName={MAIN_SCREEN_NAV}
             drawerContent={(props) => <CustomDrawerContent {...props} />}
-
+            detachInactiveScreens={true}
             screenOptions={({navigation}) => ({
                 drawerStyle: {
                     width: '70%',
@@ -39,7 +39,6 @@ const AppStack = () => {
                 drawerActiveTintColor: darkBlueColor,
                 drawerInactiveBackgroundColor: darkBlueColor,
                 drawerInactiveTintColor: 'lightgreen',
-
                 header: () => <MainHeaderNav navigation={navigation}/>,
                 headerShown: true,
                 headerTransparent: true,
@@ -56,7 +55,6 @@ const AppStack = () => {
                     ),
                 }}
             />
-
             <Drawer.Screen
                 name={YOUR_FISHES_NAV}
                 component={YourFishesScreen}
@@ -67,7 +65,6 @@ const AppStack = () => {
                     ),
                 }}
             />
-
             <Drawer.Screen
                 name={SETTINGS_NAV}
                 component={SettingsScreen}
@@ -78,6 +75,14 @@ const AppStack = () => {
                     ),
                 }}
             />
+            <Drawer.Screen
+                name={FISH_DETAILS_NAV}
+                component={FishDetailsScreen}
+                options={{
+                    drawerItemStyle: {display: 'none'},
+                }}
+            />
+
         </Drawer.Navigator>
     )
 }

@@ -75,14 +75,12 @@ function MainScreen({navigation}: any): React.JSX.Element {
                     <LoadingFragment style={styles.fishFragment}/> :
                     <View style={styles.fishFragment}>
                         <RandomFishFragment fishId={randomFish.id}
-                                            username={randomFish.username}
                                             specie={randomFish.specie}
                                             size={randomFish.size}
                                             weight={randomFish.weight}
                                             date={randomFish.date}
                                             navigation={navigation}/>
                     </View>
-
                 }
 
                 <TouchableOpacity style={globalStyles.rlFormInputActionBtn} onPress={onNewRandomFish}>

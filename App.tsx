@@ -15,6 +15,7 @@ export const HOME_SCREEN_NAV = "HomeScreenNav"
 export const MAIN_SCREEN_NAV = "MainScreenNav"
 export const YOUR_FISHES_NAV = "YourFishesNav"
 export const SETTINGS_NAV = "SettingsNav"
+export const FISH_DETAILS_NAV = "FishDetailsNav"
 
 export const SERVER_URL = "https://fish-tracker.onrender.com/fish-tracker"
 enableScreens();
