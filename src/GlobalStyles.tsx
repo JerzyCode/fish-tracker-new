@@ -2,14 +2,19 @@ import {StyleSheet} from "react-native";
 
 
 export const bgGradientColors = ['#08144b', '#6826a6']
-export const blueGradient = ['#5397fd', '#6826a6']
+
+
 export const purpleColor = '#6826a6'
 export const blueColor = '#5397fd'
 export const darkBlueColor = '#08144b'
 export const darkGray = '#31363F'
+export const lightGray = '#595b62'
+export const lightBlack = '#313133'
+export const white = 'white'
 export const randomFishFragmentFontColor = '#EEEEEE'
 export const lightGreen = 'lightgreen'
-
+export const blueGradient = ['#5397fd', '#6826a6']
+export const grayGradient = [lightGray, darkGray]
 export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,

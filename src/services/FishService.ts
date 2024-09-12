@@ -33,6 +33,37 @@ export const getRandomFish = async (): Promise<ApiResponse> => {
     }
 }
 
+export const getFishDetails = async (fishId: number): Promise<ApiResponse> => {
+    console.debug('getFishDetails()')
+
+    const token = await getUserToken();
+    if (!token) {
+        console.error('No token found');
+        return new ApiResponse(ApiResponseType.ERROR, null);
+    }
+
+    try {
+        const response = await fetch(SERVER_URL + '/rest/api/fish/' + fishId, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        const json = await response.json()
+
+        if (response.ok) {
+            return new ApiResponse(ApiResponseType.SUCCESS, json)
+        } else {
+            return new ApiResponse(ApiResponseType.ERROR, undefined)
+        }
+    } catch (error) {
+        console.error(error)
+        return new ApiResponse(ApiResponseType.ERROR, undefined)
+    }
+}
+
+
 export const getFishImage = async (fishId: number): Promise<ApiResponse> => {
     console.debug('getFishImage(), fishId=' + fishId)
 

@@ -47,7 +47,10 @@
     "specie": "Gatunek",
     "size": "Rozmiar",
     "weight": "Waga",
-    "date": "Data"
+    "date": "Data",
+    "location": "Lokalizacja",
+    "method": "Metoda",
+    "bait": "Przynęta"
   },
   "main-screen": {
     "random-fish": "Losowy połów",
@@ -58,8 +61,13 @@
   "best-fish-fragment": {
     "image-load-fail": "Nie udało się pobrać zdjęcia ryby :("
   },
-  "settings-screen" : {
+  "settings-screen": {
     "language": "Wybierz język",
     "close": "Zamknij"
+  },
+  "fish-details-screen": {
+    "fish-details-load-error": "Nie udało się pobrać szczegółów połowu :(",
+    "fish-details-text": "Szczegóły połowu:"
+
   }
 }

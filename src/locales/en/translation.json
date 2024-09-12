@@ -47,7 +47,10 @@
     "specie": "Specie",
     "size": "Size",
     "weight": "Weight",
-    "date": "Date"
+    "date": "Date",
+    "location": "Location",
+    "method": "Method",
+    "bait": "Bait"
   },
   "main-screen": {
     "random-fish": "Random fish",
@@ -61,5 +64,9 @@
   "settings-screen": {
     "language": "Select language",
     "close": "Close"
+  },
+  "fish-details-screen": {
+    "fish-details-load-error": "Failed to load fish details :(",
+    "fish-details-text": "Fish details:"
   }
 }

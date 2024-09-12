@@ -71,7 +71,7 @@ const RandomFishFragment = ({
     }, []);
 
     const goToFishDetailsView = () => {
-        navigation.navigate(FISH_DETAILS_NAV)
+        navigation.navigate(FISH_DETAILS_NAV, {fishId});
     }
 
     return (
