@@ -67,7 +67,14 @@
   },
   "fish-details-screen": {
     "fish-details-load-error": "Nie udało się pobrać szczegółów połowu :(",
-    "fish-details-text": "Szczegóły połowu:"
-
+    "fish-details-text": "Szczegóły połowu:",
+    "delete-fish-error": "Nie udało się usunąć połowu",
+    "delete-fish-success": "Pomyślnie usunięto połów"
+  },
+  "delete-modal": {
+    "modal-title": "Potwierdzenie usuwania",
+    "modal-text": "Czy na pewno chcesz usunąć ten połów?",
+    "modal-confirm": "Usuń",
+    "modal-cancel": "Anuluj"
   }
 }

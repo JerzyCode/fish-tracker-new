@@ -1,7 +1,7 @@
 import {Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import {useRoute} from "@react-navigation/native";
-import {getFishDetails, getFishImage} from "../services/FishService.ts";
+import {deleteFish, getFishDetails, getFishImage} from "../services/FishService.ts";
 import LoadingFragment from "../components/LoadingFragment.tsx";
 import {useInfoBar} from "../contexts/InfoBarContext.tsx";
 import {ApiResponseType} from "../shared/classes.ts";
@@ -10,6 +10,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import {blueGradient, darkGray, white} from "../GlobalStyles.tsx";
 import LinearGradient from "react-native-linear-gradient";
 import {getUserId} from "../contexts/AuthContext.tsx";
+import DeleteFishModal from "../components/DeleteFishModal.tsx";
 
 
 interface FishDetails {
@@ -47,7 +48,7 @@ const UserBar = ({userId, username}: { userId: number, username: string }) => {
     )
 }
 
-function FishDetailsScreen(): React.JSX.Element {
+function FishDetailsScreen({navigation}: any): React.JSX.Element {
     const route = useRoute();
     const {dispatch} = useInfoBar();
     const {t} = useTranslation();
@@ -57,6 +58,7 @@ function FishDetailsScreen(): React.JSX.Element {
     const [fishDetails, setFishDetails] = useState<FishDetails | null>(null)
     const [fishImageUrl, setFishImageUrl] = useState(null)
     const [isYourView, setIsYourView] = useState(true)
+    const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false)
 
 
     const showErrorInfoBar = (message: string) => {
@@ -71,7 +73,17 @@ function FishDetailsScreen(): React.JSX.Element {
         });
     }
 
-    console.debug("FishDetailsScreen, fishId=" + fishId)
+    const showSuccessInfoBar = (message: string) => {
+        dispatch({
+            type: 'SHOW_INFO_BAR',
+            payload: {
+                message: message,
+                type: 'success',
+                visible: true,
+                duration: 3000
+            }
+        });
+    };
 
     useEffect(() => {
         setIsFishDetailsLoading(true)
@@ -117,14 +129,38 @@ function FishDetailsScreen(): React.JSX.Element {
     }, []);
 
 
+    const handleDeleteFish = () => {
+        setIsDeleteModalVisible(false)
+        setIsFishDetailsLoading(true)
+        deleteFish(fishId)
+            .then(response => {
+                if (response?.type === ApiResponseType.SUCCESS) {
+                    showSuccessInfoBar(t('fish-details-screen.delete-fish-success'))
+                    navigation.goBack()
+                } else {
+                    showErrorInfoBar(t('fish-details-screen.delete-fish-error'))
+                }
+            })
+            .catch(() => {
+                showErrorInfoBar(t('fish-details-screen.delete-fish-error'))
+            })
+            .finally(() => {
+                setIsFishDetailsLoading(false)
+            })
+    }
+
+
     if (isFishDetailsLoading || fishDetails === null) {
-        return <LoadingFragment style={styles.detailsContainer}/>
+        return <LoadingFragment style={[styles.detailsContainer, {borderRadius: 0}]}/>
     }
 
     return (
         <LinearGradient
             colors={blueGradient} style={styles.container}>
             <UserBar userId={fishDetails.userId} username={fishDetails.username}/>
+            <DeleteFishModal isVisible={isDeleteModalVisible}
+                             handleDelete={handleDeleteFish}
+                             onClose={() => setIsDeleteModalVisible(false)}/>
             <View style={styles.detailsContainer}>
                 <View style={styles.fishDetails}>
                     <View style={styles.firstRow}>
@@ -137,7 +173,7 @@ function FishDetailsScreen(): React.JSX.Element {
                                     <Icon style={[styles.iconButton, {marginRight: 2}]} name="edit" size={30}
                                           color={white}/>
                                 </TouchableOpacity>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => setIsDeleteModalVisible(true)}>
                                     <Icon style={[styles.iconButton, {marginLeft: 2}]} name="trash-alt" size={30}
                                           color={white}/>
                                 </TouchableOpacity>

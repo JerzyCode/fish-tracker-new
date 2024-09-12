@@ -116,3 +116,30 @@ const convertToFile = async (blob: any) => {
         reader.readAsDataURL(blob);
     })
 }
+
+export const deleteFish = async (fishId: number) => {
+    console.debug('deleteFish(), fishId=' + fishId)
+    const token = await getUserToken();
+    if (!token) {
+        console.error('No token found');
+        return;
+    }
+
+    try {
+        const response = await fetch(SERVER_URL + '/rest/api/fish/image/' + fishId, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            return new ApiResponse(ApiResponseType.SUCCESS, undefined)
+        } else {
+            return new ApiResponse(ApiResponseType.ERROR, undefined)
+        }
+    } catch (error) {
+        console.error(error)
+        return new ApiResponse(ApiResponseType.ERROR, undefined)
+    }
+}

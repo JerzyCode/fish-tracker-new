@@ -67,6 +67,14 @@
   },
   "fish-details-screen": {
     "fish-details-load-error": "Failed to load fish details :(",
-    "fish-details-text": "Fish details:"
+    "fish-details-text": "Fish details:",
+    "delete-fish-error": "Can't delete fish",
+    "delete-fish-success": "Deleted fish successfully"
+  },
+  "delete-modal": {
+    "modal-title": "Confirm Deletion",
+    "modal-text": "Are you sure you want to delete this fish?",
+    "modal-confirm": "Delete",
+    "modal-cancel": "Cancel"
   }
 }
