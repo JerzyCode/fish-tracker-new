@@ -11,6 +11,7 @@ import {blueGradient, darkGray, white} from "../GlobalStyles.tsx";
 import LinearGradient from "react-native-linear-gradient";
 import {getUserId} from "../contexts/AuthContext.tsx";
 import DeleteFishModal from "../components/DeleteFishModal.tsx";
+import {USER_FISHES_NAV} from "../../App.tsx";
 
 
 interface FishDetails {
@@ -30,11 +31,11 @@ const SIZE_SUFFIX = 'cm'
 const WEIGHT_SUFFIX = 'kg'
 
 
-const UserBar = ({userId, username}: { userId: number, username: string }) => {
+const UserBar = ({navigation, userId, username}: { navigation: any, userId: number, username: string }) => {
     const [profilePictureUri, setProfilePictureUri] = useState(require('../../assets/user-default.png'))
 
     const goToUserFishesView = () => {
-        console.debug('goToUserFishesView(), userId=' + userId)
+        navigation.navigate(USER_FISHES_NAV, {userId, username});
     }
 
     return (
@@ -151,13 +152,16 @@ function FishDetailsScreen({navigation}: any): React.JSX.Element {
 
 
     if (isFishDetailsLoading || fishDetails === null) {
-        return <LoadingFragment style={[styles.detailsContainer, {borderRadius: 0}]}/>
+        return <LinearGradient
+            colors={blueGradient} style={styles.container}>
+            <LoadingFragment style={[styles.detailsContainer, {borderWidth: 0, backgroundColor: 'transparent'}]}/>
+        </LinearGradient>
     }
 
     return (
         <LinearGradient
             colors={blueGradient} style={styles.container}>
-            <UserBar userId={fishDetails.userId} username={fishDetails.username}/>
+            <UserBar navigation={navigation} userId={fishDetails.userId} username={fishDetails.username}/>
             <DeleteFishModal isVisible={isDeleteModalVisible}
                              handleDelete={handleDeleteFish}
                              onClose={() => setIsDeleteModalVisible(false)}/>

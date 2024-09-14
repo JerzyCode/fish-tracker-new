@@ -3,6 +3,37 @@ import {SERVER_URL} from "../../App.tsx";
 import {getUserToken} from "../contexts/AuthContext.tsx";
 import {Platform} from "react-native";
 
+export const getAllUserFishes = async (userId: string): Promise<ApiResponse> => {
+    console.debug('getAllUserFishes(), userId=' + userId)
+
+    const token = await getUserToken();
+    if (!token) {
+        console.error('No token found');
+        return new ApiResponse(ApiResponseType.ERROR, null);
+    }
+
+    try {
+        const response = await fetch(SERVER_URL + '/rest/api/fish?userId=' + userId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        const json = await response.json()
+
+        if (response.ok) {
+            return new ApiResponse(ApiResponseType.SUCCESS, json)
+        } else {
+            return new ApiResponse(ApiResponseType.ERROR, undefined)
+        }
+    } catch (error) {
+        console.error(error)
+        return new ApiResponse(ApiResponseType.ERROR, undefined)
+    }
+}
+
 export const getRandomFish = async (): Promise<ApiResponse> => {
     console.debug('getRandomFish()')
 

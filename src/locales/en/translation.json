@@ -76,5 +76,10 @@
     "modal-text": "Are you sure you want to delete this fish?",
     "modal-confirm": "Delete",
     "modal-cancel": "Cancel"
+  },
+  "user-fishes-screen": {
+    "your-fishes": "Your fishes",
+    "user-fishes": "Fishes of user ",
+    "get-fishes-error": "An error occurred during data loading"
   }
 }

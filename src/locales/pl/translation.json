@@ -76,5 +76,10 @@
     "modal-text": "Czy na pewno chcesz usunąć ten połów?",
     "modal-confirm": "Usuń",
     "modal-cancel": "Anuluj"
+  },
+  "user-fishes-screen": {
+    "your-fishes": "Twoje połowy",
+    "user-fishes": "Połowy użytkownika ",
+    "get-fishes-error": "Wystąpił problem podczas wczytywania danych"
   }
 }

@@ -1,38 +1,40 @@
-import React from "react";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React, {useEffect, useState} from "react";
+import {StyleSheet, Text, View} from "react-native";
 import {blueGradient} from "../GlobalStyles.tsx";
 import LinearGradient from "react-native-linear-gradient";
 import {useTranslation} from "react-i18next";
-import {DrawerScreenProps} from "@react-navigation/drawer";
+import {getUserId} from "../contexts/AuthContext.tsx";
 import FishList from "../components/FishList.tsx";
+import LoadingFragment from "../components/LoadingFragment.tsx";
 
-export type RootDrawerParamList = {
-    UserFishesScreenNav: {
-        userId: string;
-        username: string;
-        isYourView?: boolean;
-    };
-};
 
-type UserFishesScreenProps = DrawerScreenProps<RootDrawerParamList, 'UserFishesScreenNav'>;
-
-function UserFishesScreen({navigation, route}: UserFishesScreenProps): React.JSX.Element {
+function YourFishes({navigation}: any): React.JSX.Element {
     const {t} = useTranslation()
-    const {userId, username} = route.params;
+    const [userId, setUserId] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const _userId = await getUserId();
+            setUserId(_userId)
+        };
+
+        fetchUserData().then();
+    }, [])
 
     return (
         <View style={styles.container}>
             <LinearGradient
                 style={styles.contentContainer}
                 colors={blueGradient}>
-                <TouchableOpacity>
-                    {/*TODO filter button <Text>Filter</Text>*/}
-                </TouchableOpacity>
+
                 <Text style={styles.startText}>
-                    {t('user-fishes-screen.user-fishes') + username}
+                    {t('user-fishes-screen.your-fishes')}
                 </Text>
 
-                <FishList userId={userId} navigation={navigation}/>
+                {!userId ?
+                    <LoadingFragment style={styles.container}/> :
+                    <FishList userId={userId} navigation={navigation}/>
+                }
 
             </LinearGradient>
         </View>
@@ -55,7 +57,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-
     startText: {
         fontSize: 25,
         color: 'black',
@@ -66,4 +67,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default UserFishesScreen
+export default YourFishes
